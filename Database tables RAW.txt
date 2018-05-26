@@ -1,0 +1,49 @@
+0- CREATE DATABASE photo_gallery;
+
+1- users table
+
+CREATE TABLE users ( id INT (11) NOT NULL AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+	first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id) );
+
+2- to create the user using the GUI:-
+
+1.Login to phpMyADmin.
+2- Click on the database you want to add a user to
+3.Go to Privileges.
+4.Click Add a new User.
+5.Type the access info you want in the Login Information area (username, host, password)
+6.Click on the radio button for Create database with same name and grant all privileges.
+7.Click Go.
+
+
+- to do it using MYSQL:-
+GRANT ALL PRIVILEGES ON photo_gallery.* TO 'gallery'@'localhost' IDENTIFIED BY 'phpOTL123';
+
+
+3- to show all the users in this database
+
+SELECT User FROM mysql.user;
+
+4- to check if its created
+
+SHOW GRANTS FOR 'gallery'@'localhost';
+
+5- CREATE TABLE photographs ( id INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	filename VARCHAR(255) NOT NULL,
+    	type VARCHAR(100) NOT NULL,
+	size INT(11) NOT NULL,
+	caption VARCHAR(255) NOT NULL
+	);
+
+6- CREATE TABLE comments( id INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	photograph_id INT (11) NOT NULL,
+    	created DATETIME NOT NULL,
+	author VARCHAR(255) NOT NULL,
+	body TEXT NOT NULL
+	);
+
+7- ALTER TABLE comments ADD INDEX (photograph_id);
